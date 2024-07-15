@@ -1,2 +1,2 @@
 # randomGameLauncher
-spustí náhodnou ze služby Steam
+spustí náhodnou hru ze služby Steam
