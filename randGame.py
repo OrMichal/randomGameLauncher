@@ -30,7 +30,7 @@ def launch_random_game(games):
     subprocess.run(['steam', f'steam://run/{random_game_id}'])
 
 
-steam_path = '/home/michal/.local/share/Steam/'
+steam_path = ' zadejte cestu k: share/Steam/'
 
 games = get_installed_games(steam_path)
 if games:
