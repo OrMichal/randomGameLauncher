@@ -5,35 +5,35 @@ import random
 import vdf
 from random import randint
 
-def get_installed_games(steam_path):
+def getInstalledGames(steamPath):
 
-    library_folders_path = os.path.join(steam_path, 'steamapps', 'libraryfolders.vdf')
+    libraryFoldersPath = os.path.join(steamPath, "steamapps", "libraryfolders.vdf")
     
-    with open(library_folders_path, 'r', encoding='utf-8') as f:
+    with open(libraryFoldersPath, "r", encoding="utf-8") as f:
         libraries = vdf.load(f)
 
     games = []
 
-    for library in libraries['libraryfolders'].values():
-        steamapps_path = os.path.join(library['path'], 'steamapps')
-        for item in os.listdir(steamapps_path):
-            if item.endswith('.acf'):
+    for library in libraries["libraryfolders"].values():
+        steamappsPath = os.path.join(library["path"], "steamapps")
+        for item in os.listdir(steamappsPath):
+            if item.endswith(".acf"):
 
-                with open(os.path.join(steamapps_path, item), 'r', encoding='utf-8') as f:
-                    game_info = vdf.load(f)
-                    games.append(game_info['AppState']['appid'])
+                with open(os.path.join(steamappsPath, item), "r", encoding="utf-8") as f:
+                    gameInfo = vdf.load(f)
+                    games.append(gameInfo["AppState"]["appid"])
     
     return games
 
-def launch_random_game(games):
-    random_game_id = random.choice(games)
-    subprocess.run(['steam', f'steam://run/{random_game_id}'])
+def launchRandomGame(games):
+    randomGameId = random.choice(games)
+    subprocess.run(["steam", f"steam://run/{randomGameId}"])
 
 
-steam_path = ' zadejte cestu k: share/Steam/'
+steamPath = "zde vlož cestu k share/steam"
 
-games = get_installed_games(steam_path)
+games = getInstalledGames(steamPath)
 if games:
-    launch_random_game(games)
+    launchRandomGame(games)
 else:
     print("Nebyly nalezeny žádné nainstalované hry.")
